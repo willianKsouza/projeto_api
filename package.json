@@ -1,0 +1,38 @@
+{
+  "name": "curso_apirest",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "ts-node-dev -r tsconfig-paths/register --inspect --transpile-only --ignore-watch node_modules src/shared/http/server.ts",
+    "lint": "eslint . --ext .ts",
+    "lint-fix": "eslint . --ext .ts --fix",
+    "typeorm": "ts-node-dev ./node_modules/typeorm/cli.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/joi": "^17.2.3",
+    "@types/node": "^20.4.6",
+    "@typescript-eslint/eslint-plugin": "^6.2.1",
+    "@typescript-eslint/parser": "^6.2.1",
+    "eslint": "^8.46.0",
+    "eslint-config-prettier": "^6.15.0",
+    "eslint-plugin-prettier": "^3.2.0",
+    "prettier": "^3.0.1",
+    "ts-node-dev": "^2.0.0",
+    "tsconfig-paths": "^4.2.0",
+    "typescript": "^5.1.6"
+  },
+  "dependencies": {
+    "@types/cors": "^2.8.13",
+    "@types/express": "^4.17.17",
+    "celebrate": "^15.0.1",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "express-async-errors": "^3.1.1",
+    "mysql2": "^3.6.0",
+    "typeorm": "^0.2.29"
+  }
+}
