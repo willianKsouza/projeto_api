@@ -1,44 +1,36 @@
-import { getCustomRepository } from "typeorm"
+import AppError from '@shared/erros/AppError';
 
-import AppErro from "@shared/erros/AppError"
-import User from "../typeorm/entities/User"
-import UsersRepository from "../typeorm/repositories/UserRepository"
+import { getCustomRepository } from 'typeorm';
+import User from '../typeorm/entities/User';
+import UsersRepository from '../typeorm/repositories/UserRepository';
 
-
-
-
-interface IResquest {
-  name: string
-  email: string
-  password: string
+interface IRequest {
+  name: string;
+  email: string;
+  password: string;
 }
 
 class CreateUserService {
-  async execute({ name, email, password }: IResquest): Promise<User> {
-    const usersRepository = getCustomRepository(UsersRepository)
-
-
-    const emailExists = await usersRepository.findByEmail(email)
-
+  public async execute({ name, email, password }: IRequest): Promise<User> {
+    const usersRepository = getCustomRepository(UsersRepository);
+    const emailExists = await usersRepository.findByEmail(email);
 
     if (emailExists) {
-      throw new AppErro('Email adress alredy used. XD')
+      throw new AppError('Email address already used.');
     }
 
+
+
     const user = usersRepository.create({
-      name,
-      email,
-      password
-    })
+        name:name,
+      email:email,
+      password:password,
+    });
 
-   await usersRepository.save(user);
+    await usersRepository.save(user);
 
-
-
-    return user
+    return user;
   }
+}
 
-
-  }
-
-export default CreateUserService
+export default CreateUserService;
