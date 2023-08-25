@@ -3,6 +3,14 @@ import AppErro from "@shared/erros/AppError";
 import { NextFunction, Request, Response } from "express";
 import { verify } from "jsonwebtoken";
 
+
+interface ITokenPayLoad {
+  iat: number
+  exp: number
+  sub: string
+}
+
+
 export default function isAuthenticated(
   request: Request,
   response: Response,
@@ -17,6 +25,10 @@ export default function isAuthenticated(
 
   try {
     const decodeToken = verify(token, auth.jwt.secret)
+    const { sub } = decodeToken as ITokenPayLoad
+    request.user = {
+      id: sub
+    }
     return next()
   } catch (error) {
     throw new AppErro('Invalid JWT Token.')

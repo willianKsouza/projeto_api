@@ -7,6 +7,7 @@ export default class UsersController {
     const listUser = new ListUserService();
 
     const users = await listUser.execute();
+   
 
     return response.json(users);
   }
